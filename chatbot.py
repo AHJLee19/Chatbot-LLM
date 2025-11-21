@@ -26,7 +26,6 @@ if prompt := st.chat_input("What's up?"):
     # Add user message to chat history
     with st.chat_message("user"):
         st.markdown(prompt)
-
     #Display assistant response in chat message container
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
