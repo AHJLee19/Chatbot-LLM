@@ -8,7 +8,7 @@ client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # Set default model
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-3.5-turbo"
+    st.session_state["openai_model"] = "gpt-4.1-mini"
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -28,9 +28,9 @@ if prompt := st.chat_input("What's up?"):
         st.markdown(prompt)
     #Display assistant response in chat message container
     with st.chat_message("assistant"):
-        stream = client.chat.completions.create(
+        stream = client.responses.create(
             model=st.session_state["openai_model"],
-            messages=[
+            input=[
                 {"role": m["role"], "content": m["content"]} for m in st.session_state.messages
             ],
             stream=True,
